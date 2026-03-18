@@ -55,7 +55,7 @@ min_heap heapify(u64 *a, u64 size)
 
 u64 pop_min_heap(min_heap *h)
 {
-    if (h->size == 0) return -1;
+    if (h->size == 0) return 0;
     u64 *d = h->data, sz = h->size, res = d[0];
     swap(d + sz-1, d);
     u64 cur = 0;
