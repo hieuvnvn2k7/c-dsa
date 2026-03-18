@@ -55,7 +55,7 @@ min_heap heapify(u64 *a, u64 size)
 
 u64 pop_min_heap(min_heap *h)
 {
-    if (h->size == 0) return 0;
+    if (h->size == 0) return -1;
     u64 *d = h->data, sz = h->size, res = d[0];
     swap(d + sz-1, d);
     u64 cur = 0;
@@ -67,24 +67,21 @@ u64 pop_min_heap(min_heap *h)
 
 void push_min_heap(min_heap *h, u64 number)
 {
-    u64 sz = h->size;
-    if (sz == h->memory_size)
+    if (h->size == h->memory_size)
     {
-        u64 *tmp = realloc(h->data, (2 * h->memory_size + 1) * sizeof(*tmp));
-        if (tmp == NULL)
-        {
-            free_min_heap(h); return;
-        }
+        u64 new_cap = 2 * h->memory_size + 1;
+        u64 *tmp = realloc(h->data, new_cap * sizeof(*tmp));
+        if (tmp == NULL) return;
         h->data = tmp;
-        h->memory_size = 2 * h->memory_size + 1;
+        h->memory_size = new_cap;
     }
-    u64 *d = h->data;
-    d[sz++] = number; h->size++;
-    int cur = sz-1;
+    u64 *d = h->data; h->size++;
+    u64 cur = h->size - 1; d[cur] = number;
     while (cur != 0)
     {
-        if (d[cur] < d[(cur-1)/2]) swap(d + cur, d + (cur-1)/2);
+        u64 parent = (cur-1)/2;
+        if (d[cur] < d[parent]) swap(d + cur, d + parent);
         else break;
-        cur = (cur-1)/2;
+        cur = parent;
     }
 }
