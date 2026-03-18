@@ -1,14 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-typedef unsigned long long u64;
-typedef struct
-{
-    u64 size;
-    u64 *data;
-    u64 memory_size;
-} max_heap;
+#include "priority-queue.h"
 
 void swap(u64 *a, u64 *b)
 {
@@ -37,7 +30,7 @@ void local_heapify_max(u64 *a, u64 size, u64 cur_root)
     }
 }
 
-max_heap heapify(u64 *a, u64 size)
+max_heap heapify_max(u64 *a, u64 size)
 {
     max_heap h; h.size = size; h.memory_size = size;
     u64 *tmp = malloc(size*sizeof(*tmp));

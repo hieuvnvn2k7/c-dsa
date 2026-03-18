@@ -1,15 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-typedef unsigned long long u64;
-
-typedef struct
-{
-    u64 size;
-    u64 *data;
-    u64 memory_size;
-} min_heap;
+#include "priority-queue.h"
 
 void swap(u64 *a, u64 *b)
 {
@@ -38,7 +30,7 @@ void local_heapify_min(u64 *a, u64 size, u64 cur_root)
     }
 }
 
-min_heap heapify(u64 *a, u64 size)
+min_heap heapify_min(u64 *a, u64 size)
 {
     min_heap h;
     h.size = size, h.memory_size = size;
