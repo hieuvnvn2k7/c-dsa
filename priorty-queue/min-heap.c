@@ -3,11 +3,6 @@
 #include <string.h>
 #include "priority-queue.h"
 
-void swap(u64 *a, u64 *b)
-{
-    u64 c = *a; *a = *b; *b = c;
-}
-
 void free_min_heap(min_heap *h)
 {
     if (h->data)
