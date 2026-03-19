@@ -1,15 +1,21 @@
 typedef unsigned long long u64;
+void swap(u64 *a, u64 *b);
+
+
 typedef struct
 {
     u64 size;
     u64 *data;
     u64 memory_size;
-} generic_heap;
-
-void swap(u64 *a, u64 *b);
-void free_generic_heap(generic_heap *h);
-void local_heapify_generic(u64 *a, u64 size, u64 cur_root, bool (*cmp)(u64, u64));
-generic_heap heapify_generic(u64 *a, u64 size, bool (*cmp)(u64, u64));
+    bool (*better)(u64, u64);
+} heap;
+void free_heap(heap *h);
+heap create_empty_heap(u64 memory_size, bool (*better)(u64, u64));
+void local_heapify(heap *a, u64 cur_root);
+void heapify(heap *a);
+heap initialize_heap(u64 *a, u64 size, bool (*better)(u64, u64));
+u64 pop_heap(heap *h);
+void push_heap(heap *h, u64 data);
 
 
 typedef struct
