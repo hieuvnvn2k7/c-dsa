@@ -17,6 +17,19 @@ void free_max_heap(max_heap *h)
     h->size = 0; h->memory_size = 0;
 }
 
+max_heap create_empty_max_heap(u64 memory_size)
+{
+    max_heap h;
+    h.size = 0; h.memory_size = memory_size; h.data = NULL;
+    u64 *tmp = malloc(memory_size*sizeof(*tmp));
+    if (!tmp)
+    {
+        free_max_heap(&h); return h;
+    }
+    h.data = tmp;
+    return h;
+}
+
 void local_heapify_max(u64 *a, u64 size, u64 cur_root)
 {
     while (2*cur_root+1 < size)
