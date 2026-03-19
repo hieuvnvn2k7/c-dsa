@@ -8,8 +8,8 @@ typedef struct
 
 void swap(u64 *a, u64 *b);
 void free_generic_heap(generic_heap *h);
-void local_heapify_generic(u64 *a, u64 size, u64 cur_root, int (*cmp)(u64, u64));
-generic_heap heapify_generic(u64 *a, u64 size, int(*cmp)(u64, u64));
+void local_heapify_generic(u64 *a, u64 size, u64 cur_root, bool (*cmp)(u64, u64));
+generic_heap heapify_generic(u64 *a, u64 size, bool (*cmp)(u64, u64));
 
 
 typedef struct
@@ -19,6 +19,7 @@ typedef struct
     u64 memory_size;
 } max_heap;
 void free_max_heap(max_heap *h);
+max_heap create_empty_max_heap(u64 memory_size);
 void local_heapify_max(u64 *a, u64 size, u64 cur_root);
 min_heap heapify_max(u64 *a, u64 size);
 u64 pop_max_heap(max_heap *h);
@@ -32,6 +33,7 @@ typedef struct
     u64 memory_size;
 } min_heap;
 void free_min_heap(min_heap *h);
+min_heap create_empty_in_heap(u64 memory_size);
 void local_heapify_min(u64 *a, u64 size, u64 cur_root);
 min_heap heapify_min(u64 *a, u64 size);
 u64 pop_min_heap(min_heap *h);
