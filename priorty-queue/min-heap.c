@@ -17,6 +17,19 @@ void free_min_heap(min_heap *h)
     h->size = 0; h->memory_size = 0;
 }
 
+min_heap create_empty_min_heap(u64 memory_size)
+{
+    min_heap h;
+    h.size = 0; h.memory_size = 0; h.data = NULL;
+    u64 *tmp = malloc(memory_size*sizeof(*tmp));
+    if (!tmp)
+    {
+        free_min_heap(&h); return h;
+    }
+    h.data = tmp;
+    return h;
+}
+
 void local_heapify_min(u64 *a, u64 size, u64 cur_root)
 {
     while (2*cur_root+1 < size)
