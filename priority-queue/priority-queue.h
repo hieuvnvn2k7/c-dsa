@@ -1,3 +1,6 @@
+#ifndef PRIORITY_QUEUE_H
+#define PRIORITY_QUEUE_H
+
 #include <stdbool.h>
 
 typedef unsigned long long u64;
@@ -46,3 +49,5 @@ void local_heapify_min(u64 *a, u64 size, u64 cur_root);
 min_heap heapify_min(u64 *a, u64 size);
 u64 pop_min_heap(min_heap *h);
 void push_min_heap(min_heap *h, u64 number);
+
+#endif
