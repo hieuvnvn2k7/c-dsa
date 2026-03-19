@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 typedef unsigned long long u64;
 void swap(u64 *a, u64 *b);
 
